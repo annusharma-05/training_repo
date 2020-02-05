@@ -47,6 +47,7 @@ println "admingroup Group found: ${employee.getUid()}";
 
 employee.setGroups(newResult);
 }
-  modelService.save(employee);
+  modelService.save(employee); 
+  modelService.save(employee); 
 
 }
