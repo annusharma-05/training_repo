@@ -39,7 +39,7 @@ final Set<PrincipalGroupModel> newResult = new HashSet<PrincipalGroupModel>();
 for (final PrincipalGroupModel principalGroup : ret)
 {
 if(!principalGroup.getUid().equals("admingroup")){
-newResult.add(principalGroup);
+newResult.add(principalGroup)
 
 } else {
 println "admingroup Group found: ${employee.getUid()}";
