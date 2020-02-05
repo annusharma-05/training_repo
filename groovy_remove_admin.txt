@@ -1,0 +1,52 @@
+import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
+import de.hybris.platform.core.model.product.ProductModel;
+import de.hybris.platform.util.FlexibleSearchUtils;
+import de.hybris.platform.core.model.user.EmployeeModel; 
+import de.hybris.platform.servicelayer.search.SearchResult;
+import de.hybris.platform.core.model.security.PrincipalGroupModel;
+
+import de.hybris.platform.catalog.enums.ArticleApprovalStatus;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.Iterator;
+import java.util.Collection;
+
+flexibleSearchService = spring.getBean('flexibleSearchService');
+modelService = spring.getBean('modelService');
+
+
+String query = """select DISTINCT({c.pk}) from {Employee as c} where {c.uid} NOT IN ('admin','INOHYB11','MYU0686C','MY020360','MYROHITK','MYVIKR','MYBHANVI','THACYANK','THASSWET','THASMANM','MYASABAL','MYPARV','MYSHGAYA','MYANNUSH','INOHYB12') """;
+
+FlexibleSearchQuery flexiQuery = new FlexibleSearchQuery(query);
+flexiQuery.setCount(10000);
+flexiQuery.setStart(0);
+
+SearchResult<EmployeeModel> results = flexibleSearchService.search(flexiQuery);
+List<EmployeeModel> employees = results.getResult();
+
+println "No. of employees: ${employees.size()}";
+
+employees.each {employee ->
+
+final Set<PrincipalGroupModel> ret = new HashSet<PrincipalGroupModel>();
+ret.addAll(employee.getGroups());
+final Set<PrincipalGroupModel> newResult = new HashSet<PrincipalGroupModel>();
+for (final PrincipalGroupModel principalGroup : ret)
+{
+if(!principalGroup.getUid().equals("admingroup")){
+newResult.add(principalGroup);
+
+} else {
+println "admingroup Group found: ${employee.getUid()}";
+}
+
+employee.setGroups(newResult);
+}
+  modelService.save(employee);
+
+}
