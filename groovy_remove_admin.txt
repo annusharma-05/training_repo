@@ -7,7 +7,7 @@ import de.hybris.platform.core.model.security.PrincipalGroupModel;
 
 import de.hybris.platform.catalog.enums.ArticleApprovalStatus;
 
-import java.util.ArrayList;
+import java.util.ArrayList; @@@@@@@@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.Iterator;
 import java.util.Collection;
 
-flexibleSearchService = spring.getBean('flexibleSearchService');
+flexibleSearchService = spring.getBean('flexibleSearchService')
 modelService = spring.getBean('modelService');
 
 
@@ -29,7 +29,7 @@ flexiQuery.setStart(0);
 SearchResult<EmployeeModel> results = flexibleSearchService.search(flexiQuery);
 List<EmployeeModel> employees = results.getResult();
 
-println "No. of employees: ${employees.size()}";
+println "No. of employees: ${employees.size()}"
 
 employees.each {employee ->
 
@@ -39,7 +39,7 @@ final Set<PrincipalGroupModel> newResult = new HashSet<PrincipalGroupModel>();
 for (final PrincipalGroupModel principalGroup : ret)
 {
 if(!principalGroup.getUid().equals("admingroup")){
-newResult.add(principalGroup);
+newResult.add(principalGroup)
 
 } else {
 println "admingroup Group found: ${employee.getUid()}";
@@ -47,6 +47,9 @@ println "admingroup Group found: ${employee.getUid()}";
 
 employee.setGroups(newResult);
 }
-  modelService.save(employee);
+  modelService.save(employee); 
+  modelService.save(employee); 
 
 }
+
+Woody kod tae
