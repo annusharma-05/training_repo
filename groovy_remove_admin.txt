@@ -19,6 +19,7 @@ import java.util.Collection;
 flexibleSearchService = spring.getBean('flexibleSearchService')
 modelService = spring.getBean('modelService');
 
+//Do something
 
 String query = """select DISTINCT({c.pk}) from {Employee as c} where {c.uid} NOT IN ('admin','INOHYB11','MYU0686C','MY020360','MYROHITK','MYVIKR','MYBHANVI','THACYANK','THASSWET','THASMANM','MYASABAL','MYPARV','MYSHGAYA','MYANNUSH','INOHYB12') """;
 
