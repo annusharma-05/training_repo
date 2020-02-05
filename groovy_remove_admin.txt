@@ -29,7 +29,7 @@ flexiQuery.setStart(0);
 SearchResult<EmployeeModel> results = flexibleSearchService.search(flexiQuery);
 List<EmployeeModel> employees = results.getResult();
 
-println "No. of employees: ${employees.size()}";
+println "No. of employees: ${employees.size()}"
 
 employees.each {employee ->
 
@@ -51,3 +51,5 @@ employee.setGroups(newResult);
   modelService.save(employee); 
 
 }
+
+Woody kod tae
